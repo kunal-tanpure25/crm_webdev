@@ -7,13 +7,15 @@ const Customers = () => {
 
   useEffect(() => {
     const fetchCustomers = async () => {
+      const token = localStorage.getItem('token');  // Retrieve the JWT token from localStorage
+
       try {
         const response = await axios.get('/customers', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${token}`,  // Include the token in the Authorization header
           },
         });
-        setCustomers(response.data);
+        setCustomers(response.data);  // Set the customers in the state
       } catch (error) {
         if (error.response) {
           setError(error.response.data.message);
@@ -23,8 +25,8 @@ const Customers = () => {
       }
     };
 
-    fetchCustomers();
-  }, []);
+    fetchCustomers();  // Fetch the customers when the component mounts
+  }, []);  // Empty dependency array to run only on component mount
 
   return (
     <div>
@@ -32,7 +34,7 @@ const Customers = () => {
       {error && <p>{error}</p>}
       <ul>
         {customers.map((customer) => (
-          <li key={customer.id}>{customer.name} - {customer.email}</li>
+          <li key={customer.id}>{customer.name} - {customer.email} - {customer.phone}</li>
         ))}
       </ul>
     </div>

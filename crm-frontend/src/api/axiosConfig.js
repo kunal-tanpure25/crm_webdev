@@ -1,19 +1,11 @@
-// src/api/axiosConfig.js
 import axios from 'axios';
 
+// Set the base URL for all API requests
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000', // Adjust this based on your Flask server's address
-});
-
-// Add a request interceptor to include the token in headers
-axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
+  baseURL: 'http://localhost:5000',  // Flask backend running on port 5000
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 export default axiosInstance;

@@ -51,7 +51,6 @@ def protected():
 @jwt_required()
 def add_customer():
     data = request.get_json()
-    print(data)  # Log the incoming data for debugging
     if not data or 'name' not in data or 'email' not in data:
         return jsonify({"message": "Missing name or email"}), 400
 
@@ -65,15 +64,24 @@ def add_customer():
     db.session.commit()
     return jsonify({"message": "Customer created!"}), 201
 
+
 @app.route('/customers', methods=['GET'])
 @jwt_required()
-
 def get_customers():
     try:
-        customers = Customer.query.filter_by(created_by=get_jwt_identity()).all()
-        return jsonify([{"id": c.id, "name": c.name, "email": c.email, "phone": c.phone} for c in customers]), 200
+        print(request.headers)  # Debug: Print the headers to check if Authorization is present
+        user_id = get_jwt_identity()
+        customers = Customer.query.filter_by(created_by=user_id).all()
+        return jsonify([{
+            "id": c.id,
+            "name": c.name,
+            "email": c.email,
+            "phone": c.phone
+        } for c in customers]), 200
     except Exception as e:
+        print(f"Error occurred: {str(e)}")  # Debugging line
         return jsonify({"message": str(e)}), 500
+
 
 
 @app.route('/customers/<int:customer_id>', methods=['PUT'])

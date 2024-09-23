@@ -15,10 +15,11 @@ const Login = () => {
         username,
         password,
       });
-  
+
       if (response.status === 200) {
+        // Store the token in localStorage
         localStorage.setItem('token', response.data.access_token);
-        navigate('/customers'); // Redirect to customers page
+        navigate('/customers'); // Redirect to the customers page after login
       }
     } catch (error) {
       if (error.response) {
@@ -28,7 +29,6 @@ const Login = () => {
       }
     }
   };
-  
 
   return (
     <div>
