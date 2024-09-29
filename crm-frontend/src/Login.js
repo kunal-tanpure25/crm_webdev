@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from './api/axiosConfig';
+import './Login.css'; // Ensure to create this CSS file for styles
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -17,9 +18,8 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        // Store the token in localStorage
         localStorage.setItem('token', response.data.access_token);
-        navigate('/customers'); // Redirect to the customers page after login
+        navigate('/customers');
       }
     } catch (error) {
       if (error.response) {
@@ -31,24 +31,33 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="login-container">
+      <div className="login-background"></div>
+      <div className="login-form-container">
+        <h2>Login</h2>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        <div className="alternative-login">
+          <p>Or login with:</p>
+          <button className="google-button">Google</button>
+        </div>
+      </div>
     </div>
   );
 };

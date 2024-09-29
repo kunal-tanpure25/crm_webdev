@@ -1,22 +1,36 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import Login from './Login';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Dashboard from './components/Dashboard';
 import Customers from './Customers';
 import RegisterCustomer from './RegisterCustomer';
-import RegisterUser from './RegisterUser'; // Import the new component
+import Login from './Login';
+import RegisterUser from './RegisterUser';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+  },
+});
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/register" element={<RegisterCustomer />} />
-        <Route path="/register-user" element={<RegisterUser />} /> {/* Add this line */}
-      </Routes>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/register" element={<RegisterCustomer />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/RegisterUser" element={<RegisterUser />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 

@@ -1,0 +1,36 @@
+/* Dashboard.css */
+.Dashboard-root {
+  flex-grow: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("minimal-mojave-night-yf-1024x768.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.Dashboard-navbar {
+  background-color: #344663 !important;
+  backface-visibility: visible;
+  color: white;
+  border-bottom: 
+  #344663;
+}
+
+.Dashboard-footer {
+  background-color: #212121; /* Use a darker grey */
+  color: white;
+  padding: 20px 0;
+  margin-top: auto;
+  text-align: center;
+}
+
+.Dashboard-footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.Dashboard-button {
+  margin-top: 16px;
+  background: #5a4bcf !important; /* Consistent margin from theme.spacing(2) */
+}

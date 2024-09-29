@@ -1,3 +1,4 @@
+// RegisterCustomer.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -10,7 +11,7 @@ const RegisterCustomer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token'); // Retrieve the JWT token from localStorage
+    const token = localStorage.getItem('token');
 
     try {
       const response = await axios.post('http://localhost:5000/customers', {
@@ -28,17 +29,16 @@ const RegisterCustomer = () => {
         setError('');
       }
     } catch (error) {
-      console.error(error.response.data); // Log the error response for debugging
-      setError(error.response.data.message || 'Failed to register customer.');
+      setError('Failed to register customer');
       setSuccess('');
     }
   };
 
   return (
-    <div>
+    <div className="register-container">
       <h2>Register Customer</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
+      {error && <p className="error">{error}</p>}
+      {success && <p className="success">{success}</p>}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -56,7 +56,7 @@ const RegisterCustomer = () => {
         />
         <input
           type="text"
-          placeholder="Phone (optional)"
+          placeholder="Phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
