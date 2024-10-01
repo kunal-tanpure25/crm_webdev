@@ -29,6 +29,7 @@ def register():
     new_user = User(username=data['username'], password=data['password'], role=data['role'])
     db.session.add(new_user)
     db.session.commit()
+    
     return jsonify({"message": "User created!"}), 201
 
 # User login route
