@@ -1,19 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Dashboard from './components/Dashboard';
-import Customers from './Customers';
-import RegisterCustomer from './RegisterCustomer';
-import Login from './Login';
-import RegisterUser from './RegisterUser';
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Dashboard from "./components/dashboard/Dashboard";
+import Customers from "./components/customer/Customers";
+import RegisterCustomer from "./components/signup/RegisterCustomer";
+import Login from "./components/login/Login";
+import RegisterUser from "./components/signup/RegisterUser";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
+      main: "#1976d2",
     },
     secondary: {
-      main: '#dc004e',
+      main: "#dc004e",
     },
   },
 });

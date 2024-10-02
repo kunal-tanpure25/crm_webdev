@@ -1,22 +1,22 @@
 // Customers.js
-import React, { useState, useEffect } from 'react';
-import axios from './api/axiosConfig';
+import React, { useState, useEffect } from "react";
+import axios from "../../api/axiosConfig";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await axios.get('/customers', {
+        const response = await axios.get("/customers", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
         setCustomers(response.data);
       } catch (error) {
-        setError('Failed to fetch customers');
+        setError("Failed to fetch customers");
       }
     };
 
