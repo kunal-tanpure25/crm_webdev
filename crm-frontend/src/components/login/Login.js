@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from './api/axiosConfig';
-import './Login.css'; // Ensure to create this CSS file for styles
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../../api/axiosConfig";
+import "./Login.css"; // Ensure to create this CSS file for styles
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/login', {
+      const response = await axios.post("/login", {
         username,
         password,
       });
 
       if (response.status === 200) {
-        localStorage.setItem('token', response.data.access_token);
-        navigate('/customers');
+        localStorage.setItem("token", response.data.access_token);
+        navigate("/customers");
       }
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message);
       } else {
-        setError('Failed to login.');
+        setError("Failed to login.");
       }
     }
   };

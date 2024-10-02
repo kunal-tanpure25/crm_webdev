@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #282c34;
+  color: white;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.login-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../images/minimal-mojave-night-yf-1024x768.jpg');
+  /* Set your background image */
+  background-size: cover;
+  filter: blur(8px);
+}
+
+.login-form-container {
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.error-message {
+  color: red;
+}
+
+input {
+  width: 92%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  width: 97%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #6a5acd;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #5a4bcf;
+}
+
+.alternative-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.google-button,
+.apple-button {
+  width: 48%;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.google-button {
+  background-color: #db4437;
+  color: white;
+}
+
+.apple-button {
+  background-color: #000;
+  color: white;
+}
